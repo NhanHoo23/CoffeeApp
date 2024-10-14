@@ -21,7 +21,6 @@ const HomeScreen = ({ route }) => {
     const [coffeeBeans, setCoffeeBeans] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [allProducts, setAllProducts] = useState([]);
-    const [type, setType] = useState(CoffeeType.Coffee);
 
     const navigation = useNavigation();
 
@@ -51,15 +50,9 @@ const HomeScreen = ({ route }) => {
     }
 
     const goToDetail = (item) => {
-        if (item.name.includes('Beans')) {
-            setType(CoffeeType.CoffeeBeans);
-        } else {
-            setType(CoffeeType.Coffee);
-        }
-        console.log(item);
-        
+        const currentType = item.name.includes('Beans') ? CoffeeType.CoffeeBeans : CoffeeType.Coffee; 
 
-        navigation.navigate('Detail', { item, type });
+        navigation.navigate('Detail', { item, type: currentType });
     }
 
 
