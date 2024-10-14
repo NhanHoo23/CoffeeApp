@@ -1,0 +1,335 @@
+{
+  "users": [
+    {
+      "id": "01",
+      "name": "John Doe",
+      "email": "abc@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "bd8d",
+      "name": "Ho Huu Nhan",
+      "email": "nhan@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "9371",
+      "name": "Nhan Ho",
+      "email": "nhanhoo@gmail.com",
+      "password": "123"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "All",
+      "product": []
+    },
+    {
+      "id": "cappuchino",
+      "name": "Cappuchino",
+      "products": [
+        {
+          "id": 1,
+          "name": "Cappuchino Classic",
+          "price": 5,
+          "image": "https://recettes.vedrenne.fr/1269-large_default/gingerbread-cappuccino.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Cappuchino Caramel",
+          "price": 5.5,
+          "image": "https://recettes.vedrenne.fr/1269-large_default/gingerbread-cappuccino.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Cappuchino Vanilla",
+          "price": 5.5,
+          "image": "https://recettes.vedrenne.fr/1269-large_default/gingerbread-cappuccino.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Cappuchino Hazelnut",
+          "price": 6,
+          "image": "https://recettes.vedrenne.fr/1269-large_default/gingerbread-cappuccino.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Cappuchino With Ice",
+          "price": 5,
+          "image": "https://recettes.vedrenne.fr/1269-large_default/gingerbread-cappuccino.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    },
+    {
+      "id": "espresso",
+      "name": "Espresso",
+      "products": [
+        {
+          "id": 1,
+          "name": "Espresso Single Shot",
+          "price": 3,
+          "image": "https://d36bl1cjgcfngd.cloudfront.net/wp-content/uploads/sites/5/2018/12/14135937/espresso-photo-range-min.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Espresso Double Shot",
+          "price": 3.5,
+          "image": "https://d36bl1cjgcfngd.cloudfront.net/wp-content/uploads/sites/5/2018/12/14135937/espresso-photo-range-min.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Espresso Macchiato",
+          "price": 4,
+          "image": "https://d36bl1cjgcfngd.cloudfront.net/wp-content/uploads/sites/5/2018/12/14135937/espresso-photo-range-min.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Espresso Con Panna",
+          "price": 4.5,
+          "image": "https://d36bl1cjgcfngd.cloudfront.net/wp-content/uploads/sites/5/2018/12/14135937/espresso-photo-range-min.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Espresso With Ice ",
+          "price": 4,
+          "image": "https://d36bl1cjgcfngd.cloudfront.net/wp-content/uploads/sites/5/2018/12/14135937/espresso-photo-range-min.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    },
+    {
+      "id": "americano",
+      "name": "Americano",
+      "products": [
+        {
+          "id": 1,
+          "name": "Americano Black",
+          "price": 4,
+          "image": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/475991KTA/anh-mo-ta.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Americano With Milk",
+          "price": 4.5,
+          "image": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/475991KTA/anh-mo-ta.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Americano With Iced",
+          "price": 4,
+          "image": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/475991KTA/anh-mo-ta.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Americano Vanilla",
+          "price": 5,
+          "image": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/475991KTA/anh-mo-ta.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Americano Caramel",
+          "price": 5,
+          "image": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/475991KTA/anh-mo-ta.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    },
+    {
+      "id": "macchiato",
+      "name": "Macchiato",
+      "products": [
+        {
+          "id": 1,
+          "name": "Macchiato Vanilla",
+          "price": 4.5,
+          "image": "https://fandbrecipes.com/wp-content/uploads/2022/07/Espresso-Macchiato_Step-By-Step-Recipe.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Macchiato Caramel",
+          "price": 5,
+          "image": "https://fandbrecipes.com/wp-content/uploads/2022/07/Espresso-Macchiato_Step-By-Step-Recipe.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Macchiato Hazelnut",
+          "price": 5.5,
+          "image": "https://fandbrecipes.com/wp-content/uploads/2022/07/Espresso-Macchiato_Step-By-Step-Recipe.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Macchiato Chocolate",
+          "price": 5.5,
+          "image": "https://fandbrecipes.com/wp-content/uploads/2022/07/Espresso-Macchiato_Step-By-Step-Recipe.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Macchiato With Ice ",
+          "price": 5,
+          "image": "https://fandbrecipes.com/wp-content/uploads/2022/07/Espresso-Macchiato_Step-By-Step-Recipe.png",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    },
+    {
+      "id": "tea",
+      "name": "Tea",
+      "products": [
+        {
+          "id": 1,
+          "name": "Tea Pearl",
+          "price": 3.5,
+          "image": "https://i.mscwlns.co/mosaic-wellness/image/upload/f_auto,w_1000,c_limit/v1645021053/BW%20BLOG/Untitled-design---2022-02-16T194724.132_11zon.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Tea Matcha",
+          "price": 4,
+          "image": "https://i.mscwlns.co/mosaic-wellness/image/upload/f_auto,w_1000,c_limit/v1645021053/BW%20BLOG/Untitled-design---2022-02-16T194724.132_11zon.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Tea Taro",
+          "price": 4,
+          "image": "https://i.mscwlns.co/mosaic-wellness/image/upload/f_auto,w_1000,c_limit/v1645021053/BW%20BLOG/Untitled-design---2022-02-16T194724.132_11zon.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Tea Thai",
+          "price": 4.5,
+          "image": "https://i.mscwlns.co/mosaic-wellness/image/upload/f_auto,w_1000,c_limit/v1645021053/BW%20BLOG/Untitled-design---2022-02-16T194724.132_11zon.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Tea Oolong",
+          "price": 4.5,
+          "image": "https://i.mscwlns.co/mosaic-wellness/image/upload/f_auto,w_1000,c_limit/v1645021053/BW%20BLOG/Untitled-design---2022-02-16T194724.132_11zon.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    },
+    {
+      "id": "coffeeBeans",
+      "name": "Coffee Beans",
+      "products": [
+        {
+          "id": 1,
+          "name": "Coffee Beans Arabica",
+          "price": 100,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 2,
+          "name": "Coffee Beans Robusta",
+          "price": 90,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 3,
+          "name": "Coffee Beans Liberica",
+          "price": 110,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 4,
+          "name": "Coffee Beans Excelsa",
+          "price": 120,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        },
+        {
+          "id": 5,
+          "name": "Coffee Beans Blended",
+          "price": 95,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg",
+          "isFavourite": false,
+          "rate": 4.5,
+          "description": "Arabica beans are by far the most popular type of coffee beans, making up about 60% of the world’s coffee. These tasty beans originated many centuries ago in the highlands of Ethiopia, and may even be the first coffee beans ever consumed! "
+        }
+      ]
+    }
+  ]
+}
