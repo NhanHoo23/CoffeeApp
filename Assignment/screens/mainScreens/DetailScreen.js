@@ -7,29 +7,11 @@ import CustomButton from '../../components/CustomButton';
 import { set } from 'mongoose';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { splitName } from '../../utils/StringExtension';
+import DataManager from '../../utils/DataManager';
+import { addCartItem, addFavouriteItem, link_api, updateCartItems, updateFavouriteItems } from '../../api/productApi';
 
 const { height: screenHeight } = Dimensions.get('window');
-
-const splitName = (name) => {
-    if (name.includes("Beans")) {
-        const words = name.split(" ");
-
-        const title = words.slice(0, 2).join(" ");
-        const description = words.slice(2).join(" ");
-
-        return {
-            title,
-            description
-        };
-    } else {
-        const [title, ...description] = name.split(" ");
-
-        return {
-            title,
-            description: description.join(" ")
-        };
-    }
-};
 
 const DetailScreen = ({ route, navigation }) => {
     const type = route.params.type;
@@ -44,13 +26,14 @@ const DetailScreen = ({ route, navigation }) => {
     const [sizes, setSizes] = useState(type === CoffeeType.Coffee ? coffeeSizes : beanSizes);
     const [isFavourite, setIsFavourite] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const [price, setPrice] = useState(item.price.S);
 
     const { title, description } = splitName(item.name);
 
 
     useEffect(() => {
         console.log('type', type);
-        
+
         setImg1(type === CoffeeType.Coffee ? require('../../assets/ic_coffeeCate.png') : require('../../assets/ic_coffeeBeansCate.png'));
         setImg2(type === CoffeeType.Coffee ? require('../../assets/ic_milkCate.png') : require('../../assets/ic_location.png'));
         setCoffeType(type === CoffeeType.Coffee ? 'Coffee' : 'Bean');
@@ -68,50 +51,70 @@ const DetailScreen = ({ route, navigation }) => {
 
     const handleSize = (size) => {
         setSelectedSize(size);
+        if (size === 'S' || size === '250gm') {
+            setPrice(item.price.S);
+        } else if (size === 'M' || size === '500gm') {
+            setPrice(item.price.M);
+        } else {
+            setPrice(item.price.L);
+        }
     }
 
     const toggleFavourite = async () => {
         try {
-            const existingFavourites = await AsyncStorage.getItem('favourites');
-            const favourites = existingFavourites ? JSON.parse(existingFavourites) : [];
-            
-            if (isFavourite) {
-                const updatedFavourites = favourites.filter(fav => fav.id !== item.id);
-                setIsFavourite(false);
-                await AsyncStorage.setItem('favourites', JSON.stringify(updatedFavourites));                
-            } else {
-                favourites.push(item);
+            const userID = DataManager.shared.getCurrentUser().id;
+            const favourites = DataManager.shared.getFavoriteItems(); //[{"id": <userID>, "items": [[Object]]}]
+
+            if (favourites.length === 0)  {
+                //add
+                favourites.push({id: userID, items: [item]});
+                console.log('items', favourites[0].items);
+                
+                await addFavouriteItem(userID, favourites[0].items)
                 setIsFavourite(true);
-                await AsyncStorage.setItem('favourites', JSON.stringify(favourites));
+            } else {
+                if (isFavourite) {
+                    //remove
+                    favourites[0].items = favourites[0].items.filter(fav => fav.id !== item.id);
+                    await updateFavouriteItems(userID, favourites[0].items);
+                } else {
+                    //update
+                    favourites[0].items.push(item);
+                    await updateFavouriteItems(userID, favourites[0].items);
+                }
+
+                setIsFavourite(!isFavourite);
             }
         } catch (error) {
-            console.error('Error saving favourite:', error);
-        }        
-    };
-
-    const checkFavouriteStatus = async () => {
-        try {
-            const existingFavourites = await AsyncStorage.getItem('favourites');
-            const favourites = existingFavourites ? JSON.parse(existingFavourites) : [];
-            const isFav = favourites.some(fav => fav.id === item.id);
-            setIsFavourite(isFav);
-        } catch (error) {
-            console.error('Error fetching favourites:', error);
+            console.error('Error:', error);
         }
     };
 
-    const addToCart = async () => {
-        try {
-            const existingCartItems = await AsyncStorage.getItem('cartItems');
-            const cart = existingCartItems ? JSON.parse(existingCartItems) : [];
+    const checkFavouriteStatus = async () => {
+        const favourites = DataManager.shared.getFavoriteItems(); //[{"id": <userID>, "items": [[Object]]}]
+        const isFav = favourites[0].items.find(fav => fav.id === item.id);
+        setIsFavourite(isFav);
+    };
 
-            const isItemInCart = cart.some(cartItem => cartItem.id === item.id);
-            if (!isItemInCart) {
-                cart.push(item);
-                await AsyncStorage.setItem('cartItems', JSON.stringify(cart));
-                alert('Product added to cart!');
+    const addToCart = async (selectedSize) => {
+        try {
+
+            const userID = DataManager.shared.getCurrentUser().id;
+            const carts = DataManager.shared.getCartItems(); //[{"id": <userID>, "items": [[Object]]}]
+            
+            if (carts.length === 0) {
+                carts.push({id: userID, items: [{...item, size: selectedSize, quantity: 1}]});
+                console.log('items', carts[0].items);
+                await addCartItem(userID, carts[0].items)
             } else {
-                alert('Product is already in the cart!');
+                // update
+                const existingCartItemIndex = carts[0].items.findIndex(cartItem => cartItem.id === item.id && cartItem.size === selectedSize);
+                if (existingCartItemIndex === -1) {
+                    carts[0].items.push({...item, size: selectedSize, quantity: 1});
+                } else {
+                    carts[0].items[existingCartItemIndex].quantity += 1;
+                }
+                await updateCartItems(userID, carts[0].items)
             }
         } catch (error) {
             console.error('Error adding to cart:', error);
@@ -178,11 +181,11 @@ const DetailScreen = ({ route, navigation }) => {
                         <Text style={[st.text, { fontSize: 12, fontFamily: FONTS.regular, color: '#AEAEAE' }]}>Price</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={[st.text, { fontSize: 20, fontFamily: FONTS.bold, color: '#D17842' }]}>$</Text>
-                            <Text style={[st.text, { fontSize: 20, fontFamily: FONTS.bold, color: COLORS.textColor }]}>{item.price}</Text>
+                            <Text style={[st.text, { fontSize: 20, fontFamily: FONTS.bold, color: COLORS.textColor }]}>{price}</Text>
                         </View>
                     </View>
 
-                    <CustomButton title='Add to Cart' bgColor={{ backgroundColor: '#D17842' }} textColor={{ color: COLORS.textColor }} customStyle={st.button} onPress={() => addToCart()} />
+                    <CustomButton title='Add to Cart' bgColor={{ backgroundColor: '#D17842' }} textColor={{ color: COLORS.textColor }} customStyle={st.button} onPress={() => addToCart(selectedSize)} />
                 </View>
             </View>
         </View>

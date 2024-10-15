@@ -3,6 +3,9 @@ class DataManager {
     if (!DataManager.instance) {
       this.users = [];
       this.categories = []
+      this.cartItems = []
+      this.favoriteItems = [] 
+      this.currentUser = null
       DataManager.instance = this;
     }
     return DataManager.instance;
@@ -34,6 +37,15 @@ class DataManager {
     this.users = this.users.filter(u => u._id !== user._id);
   }
 
+  // Current User
+  setCurrentUser(user) {
+    this.currentUser = user;
+  }
+
+  getCurrentUser() {
+    return this.currentUser;
+  }
+
 
   //Categories
   getCategories() {
@@ -41,7 +53,33 @@ class DataManager {
   }
 
   setCategories(categories) {
-    this.categories = categories
+    this.categories = categories //[{"id": "<userID>", "items": [[Object]]}]
+  }
+
+  //Cart
+  getCartItems() {
+    return this.cartItems
+  }
+
+  pushCartItem(item) {
+    this.cartItems.push(item)
+  }
+
+  setCartItems(items) {
+    this.cartItems = items
+  }
+
+  //Favorite
+  getFavoriteItems() {
+    return this.favoriteItems
+  }
+
+  pushFavoriteItem(item) {
+    this.favoriteItems.push(item)
+  }
+
+  setFavoriteItems(items) {
+    this.favoriteItems = items
   }
 
 

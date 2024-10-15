@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { COLORS, FONTS } from '../src/constants'
 import CustomButton from '../components/CustomButton'
@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import CustomEditText from '../components/CustomEditText'
 import { validateEmail } from '../utils/Validation'
 import DataManager from '../utils/DataManager'
+import { fetchCartItems, fetchFavouriteItems } from '../api/productApi'
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ const LoginScreen = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [users, setUsers] = useState(DataManager.shared.getUsers())
+    const [loading, setLoading] = useState(false);
 
     const goToSignUp = () => {
         navigation.navigate('Register');
@@ -36,13 +38,25 @@ const LoginScreen = ({ navigation }) => {
 
         if (users.length > 0 && users.find(user => user.email === email)) {
             if (users.find(user => user.password === password)) {
+                DataManager.shared.setCurrentUser(users.find(user => user.email === email));
+
+                setLoading(true);
+                const favouriteItems = await fetchFavouriteItems(DataManager.shared.currentUser.id);
+                DataManager.shared.setFavoriteItems(favouriteItems);
+                const cartItems = await fetchCartItems(DataManager.shared.currentUser.id);
+                DataManager.shared.setCartItems(cartItems);
+
+                console.log('cartItems:', cartItems);
+                
+                setLoading(false);
+
                 goToMain();
             } else {
                 setPasswordError('Password is incorrect');
             }
         } else {
             setEmailError('Email is not registered');
-        }        
+        }
     };
 
     useEffect(() => {
@@ -60,10 +74,10 @@ const LoginScreen = ({ navigation }) => {
 
                 <CustomEditText customStyle={{ ...st.input, marginTop: 32, borderColor: emailError ? 'red' : '#252A33' }} placeholder='Email Address' isPassword={false} onChangeText={setEmail} />
                 {emailError ? <Text style={st.errorText}>{emailError}</Text> : null}
-                <CustomEditText customStyle={{...st.input, borderColor: passwordError ? 'red' : '#252A33'}} placeholder='Password' isPassword={true} onChangeText={setPassword} />
-                {passwordError ? <Text style={{...st.errorText}}>{passwordError}</Text> : null}
+                <CustomEditText customStyle={{ ...st.input, borderColor: passwordError ? 'red' : '#252A33' }} placeholder='Password' isPassword={true} onChangeText={setPassword} />
+                {passwordError ? <Text style={{ ...st.errorText }}>{passwordError}</Text> : null}
 
-                <CustomButton title='Sign In' bgColor={{ backgroundColor: '#D17842' }} textColor={{ color: COLORS.textColor }} customStyle={st.button} onPress={handleLogin}/>
+                <CustomButton title='Sign In' bgColor={{ backgroundColor: '#D17842' }} textColor={{ color: COLORS.textColor }} customStyle={st.button} onPress={handleLogin} />
                 <CustomButton title='Sign in with Google' bgColor={{ backgroundColor: '#FFFFFF' }} textColor={{ color: '#000000' }} isShowIcon={true} customStyle={st.button} />
 
                 <View style={{ flexDirection: 'row', marginTop: 32 }}>
@@ -79,6 +93,11 @@ const LoginScreen = ({ navigation }) => {
                         <Text style={[st.smallLbl, { color: '#D17842' }]}>Reset</Text>
                     </TouchableOpacity>
                 </View>
+
+                {loading &&
+                    <View style={st.gradient}>
+                        <ActivityIndicator style={st.indicator} size="large" color="#0000ff" />
+                    </View>}
             </SafeAreaView>
         </View>
     )
@@ -88,7 +107,7 @@ export default LoginScreen
 
 const st = StyleSheet.create({
 
-    parent: { 
+    parent: {
         flex: 1,
         backgroundColor: COLORS.mainBackgroundColor,
     },
@@ -132,4 +151,11 @@ const st = StyleSheet.create({
         fontSize: 12,
         width: '100%',
     },
+    gradient: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 })

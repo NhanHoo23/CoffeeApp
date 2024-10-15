@@ -2,27 +2,7 @@ import { Image, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'reac
 import React from 'react'
 import { COLORS, FONTS } from '../../src/constants'
 import LinearGradient from 'react-native-linear-gradient'
-
-const splitName = (name) => {
-    if (name.includes("Beans")) {
-        const words = name.split(" ");
-
-        const title = words.slice(0, 2).join(" ");
-        const description = words.slice(2).join(" ");
-
-        return {
-            title,
-            description
-        };
-    } else {
-        const [title, ...description] = name.split(" ");
-
-        return {
-            title,
-            description: description.join(" ")
-        };
-    }
-};
+import { splitName } from '../../utils/StringExtension'
 
 const CoffeeItem = ({ item, onPress }) => {
 
@@ -42,12 +22,10 @@ const CoffeeItem = ({ item, onPress }) => {
             <View style={st.priceView}>
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{ fontFamily: FONTS.regular, fontSize: 15, fontWeight: 600, lineHeight: 20, color: '#D17842' }}>$</Text>
-                    <Text style={{ fontFamily: FONTS.regular, fontSize: 15, fontWeight: 600, lineHeight: 20, color: COLORS.textColor }}>{" "}{item.price}</Text>
+                    <Text style={{ fontFamily: FONTS.regular, fontSize: 15, fontWeight: 600, lineHeight: 20, color: COLORS.textColor }}>{" "}{item.price.S}</Text>
                 </View>
 
-                <TouchableOpacity>
-                    <Image source={require('../../assets/ic_add.png')} style={{ width: 28, height: 28 }} resizeMode='contain' />
-                </TouchableOpacity>
+                <Image source={require('../../assets/ic_add.png')} style={{ width: 28, height: 28 }} resizeMode='contain' />
 
             </View>
         </LinearGradient>

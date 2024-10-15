@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../../components/Header'
 import DataManager from '../../utils/DataManager'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const CoffeeType = {
     Coffee: 'Coffee',
@@ -54,7 +55,6 @@ const HomeScreen = ({ route }) => {
 
         navigation.navigate('Detail', { item, type: currentType });
     }
-
 
     return (
         <View style={st.container}>

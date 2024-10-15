@@ -1,4 +1,4 @@
-const link_api = 'http://192.168.0.6:3000/users' 
+const link_api = 'http://10.24.29.36:3000/users' 
 
 export const fetchUsers = async () => {
     try {
